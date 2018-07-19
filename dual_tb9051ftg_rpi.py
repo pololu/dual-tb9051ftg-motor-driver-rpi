@@ -31,7 +31,7 @@ class Motor(object):
         self.diag_pin = diag_pin
 
         _pi.set_pull_up_down(diag_pin, pigpio.PUD_UP) # make sure DIAG is pulled up
-        _pi.write(en_pin, 1) # enable drivers by default
+        _pi.write(en_pin, 1) # enable driver by default
 
     def setSpeed(self, speed):
         if speed < 0:
@@ -74,6 +74,9 @@ class Motors(object):
     def disable(self):
         self.motor1.disable()
         self.motor2.disable()
+
+    def getFaults(self):
+        return self.motor1.getFault() or self.motor2.getFault()
 
     def forceStop(self):
         # reinitialize the pigpio interface in case we interrupted another command
