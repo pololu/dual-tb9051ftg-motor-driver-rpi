@@ -5,7 +5,7 @@ from dual_tb9051ftg_rpi import motors, MAX_SPEED
 # Define a custom exception to raise if a fault is detected.
 class DriverFault(Exception):
     def __init__(self, driver_num):
-      self.driver_num = driver_num
+        self.driver_num = driver_num
 
 def raiseIfFault():
     if motors.motor1.getFault():
