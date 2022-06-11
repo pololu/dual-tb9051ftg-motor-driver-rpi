@@ -1,14 +1,14 @@
-# Python library for the Pololu Dual TB9051FTG Motor Driver for Raspberry Pi
+# Python library for the Pololu Single TB9051FTG Motor Driver for Raspberry Pi
 
 Version: 1.0.0<br>
-Release Date: 2018-07-19<br>
+Release Date: 2022-06-11<br>
 [www.pololu.com](https://www.pololu.com/)
 
 ## Summary
 
 This library runs on the [Raspberry Pi](https://www.pololu.com/product/2759)
 (Model B+ or newer) and provides functions for controlling both channels of the
-[Pololu Dual TB9051FTG Motor Driver for Raspberry Pi](https://www.pololu.com/product/2761).
+[Pololu Single TB9051FTG Motor Driver for Raspberry Pi](https://www.pololu.com/product/2997).
 This library supports both Python 2 and Python 3.
 
 ## Getting Started
@@ -48,19 +48,19 @@ boots, you can also run:
 sudo systemctl enable pigpiod
 ```
 
-Finally, to download and install the dual_tb9051ftg_rpi library, run:
+Finally, to download and install the single_tb9051ftg_rpi library, run:
 
 ```
-git clone https://github.com/pololu/dual-tb9051ftg-motor-driver-rpi
-cd dual-tb9051ftg-motor-driver-rpi
+git clone https://github.com/Penumbrage/single-tb9051ftg-motor-driver-rpi.git
+cd single-tb9051ftg-motor-driver-rpi
 sudo python setup.py install
 ```
 
 ### Running the example program
 
-This library comes with an example program that drives each motor in both
+This library comes with an example program that drives a single motor in both
 directions.  To run the example, navigate to the
-dual-tb9051ftg-motor-driver-rpi directory and run:
+single-tb9051ftg-motor-driver-rpi directory and run:
 
 ```
 python example.py
@@ -72,32 +72,32 @@ This library uses ultrasonic 20&nbsp;kHz PWM to drive the motors.
 
 Motor speeds in this library are represented as numbers between **-480** and
 **480** (inclusive).  A speed of 0 corresponds to braking.  Positive speeds
-correspond to current flowing from M1A/M2A to M1B/M2B, while negative speeds
+correspond to current flowing from M1A to M1B, while negative speeds
 correspond to current flowing in the other direction.
 
 The library can be imported into a Python program with the following line:
 
 ```
-from dual_tb9051ftg_rpi import motors, MAX_SPEED
+from single_tb9051ftg_rpi import motors, MAX_SPEED
 ```
 
 After importing the library, you can use the functions below to enable the motors
 and set motor speeds:
 
-* `motors.enable()`: Enable both motor drivers.
+* `motors.enable()`: Enable the motor driver.
 * `motors.motor1.enable()`: Enable motor driver 1.
-* `motors.motor2.enable()`: Enable motor driver 2.
-* `motors.disable()`: Disable both motor drivers.
+* `motors.motor2.enable()`: [NOT AVAILABLE] Enable motor driver 2.
+* `motors.disable()`: Disable the motor driver.
 * `motors.motor1.disable()`: Disable motor driver 1.
-* `motors.motor2.disable()`: Disable motor driver 2.
-* `motors.setSpeeds(m1_speed, m2_speed)`: Set speed and direction for both motor 1 and motor 2.
+* `motors.motor2.disable()`: [NOT AVAILABLE] Disable motor driver 2.
+* `motors.setSpeeds(m1_speed)`: Set speed and direction for motor 1.
 * `motors.motor1.setSpeed(speed)`: Set speed and direction for motor 1.
-* `motors.motor2.setSpeed(speed)`: Set speed and direction for motor 2.
-* `motors.getFaults()`: Returns `True` if there is a fault on either motor
+* `motors.motor2.setSpeed(speed)`: [NOT AVAILABLE] Set speed and direction for motor 2.
+* `motors.getFaults()`: Returns `True` if there is a fault on the motor
   driver, `False` if no fault.
 * `motors.motor1.getFault()`: Returns `True` if there is a fault on motor driver
   1, `False` if no fault.
-* `motors.motor2.getFault()`: Returns `True` if there is a fault on motor driver
+* `motors.motor2.getFault()`: [NOT AVAILABLE] Returns `True` if there is a fault on motor driver
   2, `False` if no fault.
 
 For convenience, a constant called `MAX_SPEED` (which is equal to 480) is
@@ -107,12 +107,12 @@ can be accessed in the following ways:
 
 * `motors.MAX_SPEED`
 * `motors.motor1.MAX_SPEED`
-* `motors.motor2.MAX_SPEED`
+* `motors.motor2.MAX_SPEED`: [NOT AVAILABLE]
 
 If you are controlling multiple motor drivers, you might prefer to import the
-library using `import dual_tb9051ftg_rpi`, which requires the commands listed
-above to be prefixed with `dual_tb9051ftg_rpi.`.
+library using `import single_tb9051ftg_rpi`, which requires the commands listed
+above to be prefixed with `single_tb9051ftg_rpi.`.
 
 ## Version history
 
-* 1.0.0 (2018-07-19): Original release.
+* 1.0.0 (2022-06-22): Original release.
