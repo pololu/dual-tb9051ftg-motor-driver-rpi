@@ -114,4 +114,4 @@ class Motors(object):
         _pi = pigpio.pi()
         self.setSpeeds(0)       # m2_speed has been removed from the setSpeeds function call
 
-# motors = Mo52tors()
+# motors = Motors()
